@@ -28,22 +28,22 @@ export const CheckoutAndReview: React.FC<{
           <div className="row">
             <p className="col-6 lead">
               <b>{props.book?.copies} </b>
-               copies
+              copies
             </p>
             <p className="col-6 lead">
               <b>{props.book?.copiesAvailable} </b>
-               available
+              available
             </p>
           </div>
         </div>
-        <Link to="/#" className='btn btn-success btn-lg'>Sign In</Link>
-        <hr/>
-        <p className='mt-3'>
-            This number can change until placing order has been complete.
+        <Link to="/#" className="btn btn-success btn-lg">
+          Sign In
+        </Link>
+        <hr />
+        <p className="mt-3">
+          This number can change until placing order has been complete.
         </p>
-        <p>
-            Sign in to be able to leave a review.
-        </p>
+        <p>Sign in to be able to leave a review.</p>
       </div>
     </div>
   );

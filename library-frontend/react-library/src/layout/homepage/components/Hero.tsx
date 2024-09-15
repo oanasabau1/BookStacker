@@ -1,4 +1,9 @@
+import { useOktaAuth } from "@okta/okta-react";
+import { Link } from "react-router-dom";
+
 export const Hero = () => {
+  const { authState } = useOktaAuth();
+
   return (
     <div>
       <div className="d-none d-lg-block">
@@ -8,68 +13,98 @@ export const Hero = () => {
           </div>
           <div className="col-4 col-md-4 container d-flex justify-content-center align-items-center">
             <div className="ml-2">
-              <h1>Tell Us What Inspires You—We'll Curate the Best Content for Your Journey!</h1>
+              <h1>
+                Tell Us What Inspires You—We'll Curate the Best Content for Your
+                Journey!
+              </h1>
               <p className="lead">
-              Whether you're exploring new skills or diving deeper into a passion, 
-              our team is dedicated to connecting you with the top resources and recommendations. 
-              Share your interests with us and let us help you discover your next great read or learn something new.
+                Whether you're exploring new skills or diving deeper into a
+                passion, our team is dedicated to connecting you with the top
+                resources and recommendations. Share your interests with us and
+                let us help you discover your next great read or learn something
+                new.
               </p>
-              <a className="btn main-color btn-lg text-white" href="#">
-                Sign up
-              </a>
+              {authState?.isAuthenticated ? (
+                <Link
+                  type="button"
+                  className="btn main-color btn-lg text-white"
+                  to="/search"
+                >
+                  {" "}
+                  Explore top books
+                </Link>
+              ) : (
+                <Link className="btn main-color btn-lg text-white" to="/login">
+                  Sign up
+                </Link>
+              )}
             </div>
           </div>
         </div>
-        <div className='row g-0'>
-            <div className='col-4 col-md-4 container d-flex
-             justify-content-center align-items-center'>
-                <div className='ml-2'>
-                     <h1>Our collection is always changing!</h1>
-                     <p className='lead'>
-                     Our collection is always evolving, with new titles and updates to keep you inspired.
-                      At BookStacker, we work tirelessly to provide the most accurate and engaging book selections for our readers.
-                       Check in regularly to find your next great read—our commitment to curating the best books is our top priority.
-                     </p>
-                </div>
+        <div className="row g-0">
+          <div
+            className="col-4 col-md-4 container d-flex
+             justify-content-center align-items-center"
+          >
+            <div className="ml-2">
+              <h1>Our collection is always changing!</h1>
+              <p className="lead">
+                Our collection is always evolving, with new titles and updates
+                to keep you inspired. At BookStacker, we work tirelessly to
+                provide the most accurate and engaging book selections for our
+                readers. Check in regularly to find your next great read—our
+                commitment to curating the best books is our top priority.
+              </p>
             </div>
-            <div className='col-sm-6 col-md-6'>
-                <div className='col-image-right'></div>
-            </div>
+          </div>
+          <div className="col-sm-6 col-md-6">
+            <div className="col-image-right"></div>
+          </div>
         </div>
       </div>
 
-    {/* Mobile Heros*/}
+      {/* Mobile Heros*/}
 
-    <div className='d-lg-none'>
-        <div className='container'>
-            <div className='m-2'>
-                <div className='col-image-left'></div>
-                <div className='mt-2'>
-                <h1>Tell Us What Inspires You—We'll Curate the Best Content for Your Journey!</h1>
+      <div className="d-lg-none">
+        <div className="container">
+          <div className="m-2">
+            <div className="col-image-left"></div>
+            <div className="mt-2">
+              <h1>
+                Tell Us What Inspires You—We'll Curate the Best Content for Your
+                Journey!
+              </h1>
               <p className="lead">
-              Whether you're exploring new skills or diving deeper into a passion, 
-              our team is dedicated to connecting you with the top resources and recommendations. 
-              Share your interests with us and let us help you discover your next great read or learn something new.
+                Whether you're exploring new skills or diving deeper into a
+                passion, our team is dedicated to connecting you with the top
+                resources and recommendations. Share your interests with us and
+                let us help you discover your next great read or learn something
+                new.
               </p>
-              <a className="btn main-color btn-lg text-white" href="#">
-                Sign up
-              </a>
-                </div>
+              {authState?.isAuthenticated ? 
+            <Link type="button" className='btn main-color btn-lg text-white' to='/search'>Explore top books</Link>  
+           :
+           <Link className="btn main-color btn-lg text-white" to="/login">
+           Sign up
+         </Link>
+            }
             </div>
-            <div className='m-2'>
-                <div className='col-image-right'></div>
-                <div className='mt-2'>
-                <h1>Our collection is always changing!</h1>
-                     <p className='lead'>
-                     Our collection is always evolving, with new titles and updates to keep you inspired.
-                      At BookStacker, we work tirelessly to provide the most accurate and engaging book selections for our readers.
-                       Check in regularly to find your next great read—our commitment to curating the best books is our top priority.
-                    </p>
-                </div>
+          </div>
+          <div className="m-2">
+            <div className="col-image-right"></div>
+            <div className="mt-2">
+              <h1>Our collection is always changing!</h1>
+              <p className="lead">
+                Our collection is always evolving, with new titles and updates
+                to keep you inspired. At BookStacker, we work tirelessly to
+                provide the most accurate and engaging book selections for our
+                readers. Check in regularly to find your next great read—our
+                commitment to curating the best books is our top priority.
+              </p>
             </div>
+          </div>
         </div>
-    </div>
-
+      </div>
     </div>
   );
 };
