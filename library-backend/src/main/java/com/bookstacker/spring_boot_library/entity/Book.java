@@ -1,7 +1,7 @@
 package com.bookstacker.spring_boot_library.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.*;
 import lombok.Data;
 
 @Entity

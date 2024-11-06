@@ -1,6 +1,6 @@
 package com.bookstacker.spring_boot_library.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
