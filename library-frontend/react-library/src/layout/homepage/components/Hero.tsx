@@ -81,13 +81,19 @@ export const Hero = () => {
                 let us help you discover your next great read or learn something
                 new.
               </p>
-              {authState?.isAuthenticated ? 
-            <Link type="button" className='btn main-color btn-lg text-white' to='/search'>Explore top books</Link>  
-           :
-           <Link className="btn main-color btn-lg text-white" to="/login">
-           Sign up
-         </Link>
-            }
+              {authState?.isAuthenticated ? (
+                <Link
+                  type="button"
+                  className="btn main-color btn-lg text-white"
+                  to="/search"
+                >
+                  Explore top books
+                </Link>
+              ) : (
+                <Link className="btn main-color btn-lg text-white" to="/login">
+                  Sign up
+                </Link>
+              )}
             </div>
           </div>
           <div className="m-2">
