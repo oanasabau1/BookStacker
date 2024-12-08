@@ -32,6 +32,9 @@ export const BookCheckoutPage = () => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
   const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
+  // Payment
+  const [displayError, setDisplayError] = useState(false);
+
   const bookId = window.location.pathname.split("/")[2];
 
   useEffect(() => {
@@ -68,7 +71,7 @@ export const BookCheckoutPage = () => {
 
   useEffect(() => {
     const fetchBookReviews = async () => {
-      const reviewUrl: string = `${process.env.REACT_APP_API}/api/reviews/search/findByBookId?bookId=${bookId}`;
+      const reviewUrl: string = `${process.env.REACT_APP_API}/reviews/search/findByBookId?bookId=${bookId}`;
 
       const responseReviews = await fetch(reviewUrl);
 
@@ -227,8 +230,10 @@ export const BookCheckoutPage = () => {
     };
     const checkoutResponse = await fetch(url, requestOptions);
     if (!checkoutResponse.ok) {
+      setDisplayError(true);
       throw new Error("Something went wrong!");
     }
+    setDisplayError(false);
     setIsCheckedOut(true);
   }
 
@@ -262,6 +267,11 @@ export const BookCheckoutPage = () => {
   return (
     <div>
       <div className="container d-none d-lg-block">
+        {displayError && 
+        <div className='alert alert-danger mt-3' role='alert'>
+          Please pay outstanding fees and/or return late book(s) before checking out a new book.
+        </div>
+        }
         <div className="row mt-5">
           <div className="col-sm-2 col-md-2">
             {book?.img ? (
@@ -298,6 +308,11 @@ export const BookCheckoutPage = () => {
         <LatestReview reviews={reviews} bookId={book?.id} mobile={false} />
       </div>
       <div className="container d-lg-none mt-5">
+      {displayError && 
+        <div className='alert alert-danger mt-3' role='alert'>
+          Please pay outstanding fees and/or return late book(s) before checking out a new book.
+        </div>
+        }
         <div className="d-flex justify-content-center align-items-center">
           {book?.img ? (
             <img src={book?.img} width="226" height="349" alt="Book" />
